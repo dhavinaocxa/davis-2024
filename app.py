@@ -6,7 +6,8 @@ import plotly.express as px
 
 # Menampilkan teks 
 st.subheader("Visualisasi dari Data tips.csv")
-st.write("Dhavina Ocxa Dwiyantie (21082010136)")
+st.write("Dhavina Ocxa Dwiyantie")
+st.write("21082010136")
 
 st.subheader("")
 st.subheader("Scatter Plot")
