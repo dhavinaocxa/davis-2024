@@ -9,15 +9,12 @@ st.subheader("Visualisasi dari Data tips.csv")
 st.write("Dhavina Ocxa Dwiyantie")
 st.write("21082010136")
 
-st.subheader("")
-st.subheader("Scatter Plot")
 # 1
 # reading the database
 data = pd.read_csv("https://raw.githubusercontent.com/dhavinaocxa/davis-2024/main/tips.csv")
 
-# printing the top 10 rows
-st.write(data.head(10))
-
+st.subheader("")
+st.subheader("Scatter Plot")
 # Scatter plot with day against tip
 fig, ax = plt.subplots()
 scatter = ax.scatter(data['day'], data['tip'], c=data['size'], s=data['total_bill'])
