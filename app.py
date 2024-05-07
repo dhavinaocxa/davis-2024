@@ -10,7 +10,7 @@ st.write("Dhavina Ocxa Dwiyantie (21082010136)")
 
 # 1
 # reading the database
-data = pd.read_csv("https://github.com/dhavinaocxa/davis-2024/blob/main/tips.csv")
+data = pd.read_csv("https://raw.githubusercontent.com/dhavinaocxa/davis-2024/main/tips.csv")
 
 # Scatter plot with day against tip
 fig, ax = plt.subplots()
