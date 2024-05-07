@@ -5,7 +5,7 @@ import seaborn as sns
 import plotly.express as px
 
 # Menampilkan teks 
-st.subheader("VISUALISASI DATA")
+st.subheader("Visualisasi dari Data tips.csv")
 st.write("Dhavina Ocxa Dwiyantie (21082010136)")
 
 st.subheader("")
@@ -14,25 +14,22 @@ st.subheader("Scatter Plot")
 # reading the database
 data = pd.read_csv("https://raw.githubusercontent.com/dhavinaocxa/davis-2024/main/tips.csv")
 
+# printing the top 10 rows
+st.write(data.head(10))
+
 # Scatter plot with day against tip
 fig, ax = plt.subplots()
-scatter = ax.scatter(data['day'], data['tip'])
+scatter = ax.scatter(data['day'], data['tip'], c=data['size'], s=data['total_bill'])
+
+# Adding Title to the Plot
+plt.title("Scatter Plot")
 
 # Setting the X and Y labels
 plt.xlabel('Day')
 plt.ylabel('Tip')
 
-# showing the plot
-st.pyplot(fig)
+plt.colorbar(scatter)
 
-st.subheader("")
-st.subheader("Line Plot")
-# 2
-# draw lineplot
-fig, ax = plt.subplots() 
-sns.lineplot(x="sex", y="total_bill", data=data, ax=ax)
-
-# showing the plot
 st.pyplot(fig)
 
 st.subheader("")
@@ -43,3 +40,13 @@ fig = px.line(data, y='tip', color='sex')
 
 # showing the plot
 st.plotly_chart(fig)
+
+st.subheader("")
+st.subheader("Line Plot")
+# 2
+# draw lineplot
+fig, ax = plt.subplots() 
+sns.lineplot(x="sex", y="total_bill", data=data, ax=ax)
+
+# showing the plot
+st.pyplot(fig)
