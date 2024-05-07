@@ -1,16 +1,26 @@
 import streamlit as st
-import plotly.express as px
 import pandas as pd
 import matplotlib.pyplot as plt
 
+url = "https://github.com/dhavinaocxa/davis-2024/blob/main/tips.csv"
+
 # reading the database
-data = pd.read_csv("tips.csv")
+data = pd.read_csv(url)
 
-# plotting the scatter chart
-fig = px.scatter(data, x="day", y="tip", color='sex')
+# printing the top 10 rows
+st.write(data.head(10))
 
-# adding title to the scatter chart
-plt.title("Scatter Chart")
+# Scatter plot with day against tip
+fig, ax = plt.subplots()
+scatter = ax.scatter(data['day'], data['tip'], c=data['size'], s=data['total_bill'])
 
-# showing the plot
+# Adding Title to the Plot
+plt.title("Scatter Plot")
+
+# Setting the X and Y labels
+plt.xlabel('Day')
+plt.ylabel('Tip')
+
+plt.colorbar(scatter)
+
 st.pyplot(fig)
