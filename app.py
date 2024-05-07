@@ -1,18 +1,20 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
 
-url = "https://github.com/dhavinaocxa/davis-2024/blob/main/tips.csv"
+# Menampilkan teks 
+st.subheader("VISUALISASI DATA")
+st.write("Dhavina Ocxa Dwiyantie (21082010136)")
 
+# 1
 # reading the database
-data = pd.read_csv(url)
-
-# printing the top 10 rows
-st.write(data.head(10))
+data = pd.read_csv("https://github.com/dhavinaocxa/davis-2024/blob/main/tips.csv")
 
 # Scatter plot with day against tip
 fig, ax = plt.subplots()
-scatter = ax.scatter(data['day'], data['tip'], c=data['size'], s=data['total_bill'])
+scatter = ax.scatter(data['day'], data['tip'])
 
 # Adding Title to the Plot
 plt.title("Scatter Plot")
@@ -21,6 +23,22 @@ plt.title("Scatter Plot")
 plt.xlabel('Day')
 plt.ylabel('Tip')
 
-plt.colorbar(scatter)
-
+# showing the plot
 st.pyplot(fig)
+
+# 2
+# draw lineplot
+sns.lineplot(x="sex", y="total_bill", data=data)
+
+# setting the title using Matplotlib
+plt.title('Line Plot')
+
+# showing the plot
+st.pyplot()
+
+# 3
+# plotting the scatter chart
+fig = px.line(data, y='tip', color='sex')
+
+# showing the plot
+st.plotly_chart(fig)
