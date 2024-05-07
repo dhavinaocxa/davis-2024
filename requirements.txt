@@ -1,6 +1,0 @@
-streamlit
-pandas==2.2.1
-jovian
-request
-BeautifulSoup
-os
