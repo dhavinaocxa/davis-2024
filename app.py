@@ -28,13 +28,14 @@ st.pyplot(fig)
 
 # 2
 # draw lineplot
-sns.lineplot(x="sex", y="total_bill", data=data)
+fig, ax = plt.subplots() 
+sns.lineplot(x="sex", y="total_bill", data=data, ax=ax)
 
 # setting the title using Matplotlib
-plt.title('Line Plot')
+ax.set_title('Line Plot')
 
 # showing the plot
-st.pyplot()
+st.pyplot(fig)
 
 # 3
 # plotting the scatter chart
