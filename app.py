@@ -4,8 +4,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 from gtts import gTTS
-import pygame
 import io
+from pydub import AudioSegment
+from pydub.playback import play
 
 # Inisialisasi mixer untuk Pygame
 pygame.mixer.init()
@@ -18,9 +19,10 @@ def text_to_speech(text):
     tts.write_to_fp(audio_bytes)
     # Load the audio into Pygame mixer
     audio_bytes.seek(0)
-    pygame.mixer.music.load(audio_bytes)
+    # Convert audio bytes to AudioSegment
+    audio_segment = AudioSegment.from_file(audio_bytes, format="mp3")
     # Play the audio
-    pygame.mixer.music.play()
+    play(audio_segment)
 
 # Menampilkan teks 
 st.subheader("Visualisasi dari Data tips.csv")
