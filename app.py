@@ -3,9 +3,31 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
+from gtts import gTTS
+import pygame
+import io
+
+# Inisialisasi mixer untuk Pygame
+pygame.mixer.init()
+
+# Function to convert text to speech and play it
+def text_to_speech(text):
+    tts = gTTS(text=text, lang='id')  # Using Indonesian language
+    # Save the audio as bytes
+    audio_bytes = io.BytesIO()
+    tts.write_to_fp(audio_bytes)
+    # Load the audio into Pygame mixer
+    audio_bytes.seek(0)
+    pygame.mixer.music.load(audio_bytes)
+    # Play the audio
+    pygame.mixer.music.play()
 
 # Menampilkan teks 
 st.subheader("Visualisasi dari Data tips.csv")
+
+# Text-to-speech untuk subheader
+text_to_speech("Visualisasi dari Data tips.csv")
+
 st.write("Dhavina Ocxa Dwiyantie")
 st.write("21082010136")
 
