@@ -26,7 +26,7 @@ def text_to_speech(text):
 st.subheader("Visualisasi dari Data tips.csv")
 
 # Text-to-speech untuk subheader
-text_to_speech("Visualisasi dari Data tips.csv")
+text_to_speech("Berikut merupakan hasil deploy Dhavina")
 
 st.write("Dhavina Ocxa Dwiyantie")
 st.write("21082010136")
