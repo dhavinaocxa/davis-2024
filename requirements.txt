@@ -1,8 +1,7 @@
 streamlit
-pandas==2.2.1
+pandas
 plotly==5.22.0
 matplotlib
 seaborn
 gTTS
 pygame
-io
