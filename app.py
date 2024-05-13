@@ -8,9 +8,6 @@ import io
 from pydub import AudioSegment
 from pydub.playback import play
 
-# Inisialisasi mixer untuk Pygame
-pygame.mixer.init()
-
 # Function to convert text to speech and play it
 def text_to_speech(text):
     tts = gTTS(text=text, lang='id')  # Using Indonesian language
