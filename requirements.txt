@@ -5,3 +5,12 @@ matplotlib
 seaborn
 gTTS
 pygame
+yfinance
+pandas-datareader
+numpy
+datetime
+openpyxl
+pymysql
+SQLAlchemy
+scipy
+prophet
