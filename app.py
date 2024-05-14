@@ -4,29 +4,53 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 from gtts import gTTS
-import pygame
 import io
+import base64
 
-# Inisialisasi mixer untuk Pygame
-pygame.mixer.init()
 
-# Function to convert text to speech and play it
+Tampaknya menggunakan pygame atau pyaudio di lingkungan Streamlit Cloud bisa menyebabkan masalah karena keterbatasan lingkungan. Oleh karena itu, kita perlu menggunakan pendekatan alternatif yang tidak memerlukan inisialisasi mixer audio di sisi server.
+
+Streamlit tidak mendukung pemutaran audio secara langsung dari server, namun Anda dapat mengintegrasikan pemutaran audio menggunakan elemen HTML. Misalnya, Anda dapat menggunakan gTTS untuk membuat file audio dan kemudian mengunggah file tersebut ke Streamlit untuk diputar menggunakan HTML.
+
+Berikut adalah contoh bagaimana melakukannya:
+
+Menggunakan gTTS untuk menghasilkan file audio.
+Menggunakan elemen HTML untuk memutar file audio di Streamlit.
+Berikut adalah kode yang dimodifikasi:
+
+python
+Salin kode
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+from gtts import gTTS
+import io
+import base64
+
+# Function to convert text to speech and generate audio file
 def text_to_speech(text):
     tts = gTTS(text=text, lang='id')  # Using Indonesian language
-    # Save the audio as bytes
     audio_bytes = io.BytesIO()
-    tts.write_to_fp(audio_bytes)
-    # Load the audio into Pygame mixer
-    audio_bytes.seek(0)
-    pygame.mixer.music.load(audio_bytes)
-    # Play the audio
-    pygame.mixer.music.play()
+    tts.save("audio.mp3")
+    return "audio.mp3"
+
+# Function to play audio in streamlit using HTML
+def play_audio(audio_file):
+    audio_placeholder = st.empty()
+    audio_placeholder.markdown(f"""
+        <audio autoplay="true">
+        <source src="data:audio/mp3;base64,{base64.b64encode(open(audio_file, "rb").read()).decode()}" type="audio/mp3">
+        </audio>
+        """, unsafe_allow_html=True)
 
 # Menampilkan teks 
 st.subheader("Visualisasi dari Data tips.csv")
 
 # Text-to-speech untuk subheader
-text_to_speech("Visualisasi dari Data tips.csv")
+audio_file = text_to_speech("Visualisasi dari Data tips.csv")
+play_audio(audio_file)
 
 st.write("Dhavina Ocxa Dwiyantie")
 st.write("21082010136")
