@@ -6,22 +6,24 @@ import plotly.express as px
 from gtts import gTTS
 import io
 import base64
+import os
 
 # Function to convert text to speech and generate audio file
-def text_to_speech(text):
+def text_to_speech(text, filename="audio.mp3"):
     tts = gTTS(text=text, lang='id')  # Using Indonesian language
-    audio_bytes = io.BytesIO()
-    tts.save("audio.mp3")
-    return "audio.mp3"
+    tts.save(filename)
+    return filename
 
 # Function to play audio in streamlit using HTML
 def play_audio(audio_file):
-    audio_placeholder = st.empty()
-    audio_placeholder.markdown(f"""
-        <audio autoplay="true">
-        <source src="data:audio/mp3;base64,{base64.b64encode(open(audio_file, "rb").read()).decode()}" type="audio/mp3">
-        </audio>
-        """, unsafe_allow_html=True)
+    with open(audio_file, "rb") as file:
+        audio_bytes = file.read()
+        audio_placeholder = st.empty()
+        audio_placeholder.markdown(f"""
+            <audio autoplay="true">
+            <source src="data:audio/mp3;base64,{base64.b64encode(audio_bytes).decode()}" type="audio/mp3">
+            </audio>
+            """, unsafe_allow_html=True)
 
 # Menampilkan teks 
 st.subheader("Visualisasi dari Data tips.csv")
