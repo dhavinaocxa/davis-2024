@@ -7,28 +7,6 @@ from gtts import gTTS
 import io
 import base64
 
-
-Tampaknya menggunakan pygame atau pyaudio di lingkungan Streamlit Cloud bisa menyebabkan masalah karena keterbatasan lingkungan. Oleh karena itu, kita perlu menggunakan pendekatan alternatif yang tidak memerlukan inisialisasi mixer audio di sisi server.
-
-Streamlit tidak mendukung pemutaran audio secara langsung dari server, namun Anda dapat mengintegrasikan pemutaran audio menggunakan elemen HTML. Misalnya, Anda dapat menggunakan gTTS untuk membuat file audio dan kemudian mengunggah file tersebut ke Streamlit untuk diputar menggunakan HTML.
-
-Berikut adalah contoh bagaimana melakukannya:
-
-Menggunakan gTTS untuk menghasilkan file audio.
-Menggunakan elemen HTML untuk memutar file audio di Streamlit.
-Berikut adalah kode yang dimodifikasi:
-
-python
-Salin kode
-import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import plotly.express as px
-from gtts import gTTS
-import io
-import base64
-
 # Function to convert text to speech and generate audio file
 def text_to_speech(text):
     tts = gTTS(text=text, lang='id')  # Using Indonesian language
