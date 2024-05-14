@@ -27,7 +27,7 @@ def play_audio(audio_file):
 st.subheader("Visualisasi dari Data tips.csv")
 
 # Text-to-speech untuk subheader
-audio_file = text_to_speech("Visualisasi dari Data tips.csv")
+audio_file = text_to_speech("Ini merupakan hasil deploy streamlit Dhavina")
 play_audio(audio_file)
 
 st.write("Dhavina Ocxa Dwiyantie")
